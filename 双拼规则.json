@@ -1,0 +1,45 @@
+{
+  "initial": {
+    "zh": "v",
+    "ch": "i",
+    "sh": "u"
+  },
+  "final": {
+    "iu": "q",
+    "ei": "w",
+    "uan": "r",
+    "van": "r",
+    "ue": "t",
+    "ui": "v",
+    "v": "v",
+    "ve": "t",
+    "un": "y",
+    "vn": "y",
+    "uo": "o",
+    "ie": "q",
+    "ong": "s",
+    "iong": "s",
+    "ai": "d",
+    "en": "f",
+    "eng": "g",
+    "ang": "h",
+    "uai": "k",
+    "ing": "k",
+    "an": "j",
+    "iang": "l",
+    "uang": "l",
+    "ou": "z",
+    "ia": "x",
+    "ua": "x",
+    "ao": "c",
+    "in": "k",
+    "iao": "n",
+    "ian": "m"
+  },
+  "tone": {
+    "1": "u",
+    "2": "i",
+    "3": "o",
+    "4": "p"
+  }
+}
