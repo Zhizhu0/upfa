@@ -6,6 +6,9 @@ from pypinyin.contrib.tone_convert import to_initials, to_finals_tone3
 with open('双拼规则.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 
+with open('20902字拼音.json', 'r', encoding='utf-8') as f:
+    p20902 = json.load(f)
+
 output = ''
 
 with open('导出方案处理简码-一字一码.txt', 'r', encoding='utf-8') as f:
@@ -23,18 +26,25 @@ for line in j_yy:
 
 with open('导出方案处理简码-单字双码.txt', 'r', encoding='utf-8') as f:
     j_du = f.read().split('\n')
+
+usd = []
+
 for line in j_du:
     if line != '':
-        p = pinyin(line, style=Style.NORMAL)[0][0]
-        initial = to_initials(p) if to_initials(p) != '' else p[0]
-        final = p[len(initial):]
-        if initial in data['initial']:
-            initial = data['initial'][initial]
-        if final in data['final']:
-            final = data['final'][final]
-        if final == '':
-            final = initial
-        output += f'{initial}{final} {line}\n'
+        usd.append(line)
+        for p in p20902[line]:
+            initial = p['initial']
+            final = p['final']
+            tone = p['tone']
+            if initial in data['initial']:
+                initial = data['initial'][initial]
+            if final in data['final']:
+                final = data['final'][final]
+            if final == '':
+                final = initial
+            output += f'{initial}{final} {line}\n'
+            if tone != '':
+                output += f'{initial}{final}{tone} {line}\n'
 
 with open('导出方案处理全码.txt', 'r', encoding='utf-8') as f:
     qm = f.read().split('\n')
@@ -80,9 +90,9 @@ for line in qm:
                 ol += initial
             output += f'{ol} {line}\n'
 
-with open('20902字拼音.json', 'r', encoding='utf-8') as f:
-    p20902 = json.load(f)
 for char in p20902:
+    if char in usd:
+        continue
     c_list = p20902[char]
     for c in c_list:
         initial = c['initial']
